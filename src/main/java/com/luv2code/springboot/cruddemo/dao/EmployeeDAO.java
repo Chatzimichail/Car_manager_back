@@ -14,5 +14,6 @@ public interface EmployeeDAO {
 	public int saveService(Service theService) ;
 	public List<Service> findServises(String thePinakida);
 	public int updateCar(Car theCar);
+	public int updateService (Service theService);
 
 }

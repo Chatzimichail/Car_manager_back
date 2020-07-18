@@ -51,6 +51,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return employeeDAO.updateCar(theCar);
 	}
 
+	@Override
+	public int updateService (com.luv2code.springboot.cruddemo.entity.Service theService) {
+		return employeeDAO.updateService(theService);
+	}
+
 }
 
 

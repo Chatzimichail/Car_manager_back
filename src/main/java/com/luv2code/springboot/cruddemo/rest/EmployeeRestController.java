@@ -22,7 +22,7 @@ import com.luv2code.springboot.cruddemo.service.EmployeeService;
 public class EmployeeRestController {
 
 	private EmployeeService employeeService;
-	
+
 	@Autowired
 	public EmployeeRestController(EmployeeService theEmployeeService) {
 		employeeService = theEmployeeService;
@@ -31,10 +31,10 @@ public class EmployeeRestController {
 
 	@PostMapping("/newcar")
 	public int newCar(@RequestParam String pinakida, @RequestParam String name, @RequestParam String lastName, @RequestParam String plasio,
-						 @RequestParam String kibika, @RequestParam String aloga, @RequestParam String kodikosKinitira,
-						 @RequestParam String xronoligia, @RequestParam String marka, @RequestParam String modelo) {
+					  @RequestParam String kibika, @RequestParam String aloga, @RequestParam String kodikosKinitira,
+					  @RequestParam String xronoligia, @RequestParam String marka, @RequestParam String modelo) {
 
-		Car newCar = new Car(pinakida,name,lastName,plasio,kibika,aloga,kodikosKinitira,xronoligia,marka,modelo);
+		Car newCar = new Car(pinakida, name, lastName, plasio, kibika, aloga, kodikosKinitira, xronoligia, marka, modelo);
 
 		int i = employeeService.saveCar(newCar);
 
@@ -44,8 +44,7 @@ public class EmployeeRestController {
 	@PostMapping("/service")
 	public int newService(@RequestParam String pinakida, @RequestParam String xml1, @RequestParam String xml2, @RequestParam String sxolia) {
 
-		Service newService = new Service(pinakida,xml1,xml2,sxolia);
-
+		Service newService = new Service(pinakida, xml1, xml2, sxolia);
 
 
 		return employeeService.saveService(newService);
@@ -61,27 +60,43 @@ public class EmployeeRestController {
 
 	@PostMapping("/updatecar")
 	public int updateCar(@RequestParam String pinakida, @RequestParam String name, @RequestParam String lastName, @RequestParam String plaisio,
-					  @RequestParam String kibika, @RequestParam String aloga, @RequestParam String kodikosKinitira,
-					  @RequestParam String xronoligia, @RequestParam String marka, @RequestParam String modelo) {
+						 @RequestParam String kibika, @RequestParam String aloga, @RequestParam String kodikosKinitira,
+						 @RequestParam String xronoligia, @RequestParam String marka, @RequestParam String modelo) {
 
-		Car newCar = new Car(pinakida,name,lastName,plaisio,kibika,aloga,kodikosKinitira,xronoligia,marka,modelo);
+		Car newCar = new Car(pinakida, name, lastName, plaisio, kibika, aloga, kodikosKinitira, xronoligia, marka, modelo);
 
 		int i = employeeService.updateCar(newCar);
 
 		return i;
 	}
-	
-	// expose "/employees" and return list of employees
+
 	@PostMapping("/services")
-	public List<Service>  getServices(@RequestParam String pinakida) {
+	public List<Service> getServices(@RequestParam String pinakida) {
 		List<Service> myList = employeeService.findServises(pinakida);
-
-
-
-
 
 		return myList;
 	}
+
+	@PostMapping("/updateservice")
+	public int updateService(@RequestParam int id, @RequestParam String xlm1, @RequestParam String xlm2, @RequestParam String sxolia) {
+
+		int i = 0;
+		Service tempService = null;
+
+		tempService.setXml1(xlm1);
+		tempService.setXlm2(xlm2);
+		tempService.setSxolia(sxolia);
+		tempService.setId(id);
+
+		i = employeeService.updateService(tempService);
+
+		return i;
+	}
+
+	// find service by id
+
+
+}
 
 	// add mapping for GET /employees/{employeeId}
 	
@@ -140,7 +155,6 @@ public class EmployeeRestController {
 //		return "Deleted employee id - " + employeeId;
 //	}
 	
-}
 
 
 

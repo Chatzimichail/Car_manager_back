@@ -13,4 +13,5 @@ public interface EmployeeService {
 	public int saveCar(Car theEmployee);
 	public int saveService(com.luv2code.springboot.cruddemo.entity.Service theId);
 	public int updateCar(Car theCar);
+	public int updateService (com.luv2code.springboot.cruddemo.entity.Service theService);
 }

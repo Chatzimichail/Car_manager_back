@@ -192,7 +192,7 @@ public class EmployeeDAOHibernateImpl implements EmployeeDAO {
 					service.setSxolia(rs.getString("sxolia"));
 					service.setXml1(rs.getString("xlm1"));
 					service.setXlm2(rs.getString("xlm2"));
-					service.setId(rs.getString("id"));
+					service.setId(rs.getInt("id"));
 					myList.add(service);
 
 				}
@@ -240,6 +240,32 @@ public class EmployeeDAOHibernateImpl implements EmployeeDAO {
 
 		return 1;
 	}
+
+	@Override
+	public int updateService (Service theService) {
+		connectToDb();
+		try {
+			PreparedStatement stmt=con.prepareStatement("UPDATE service SET sxolia = ?, xlm2 = ?, xlm1 = ? WHERE id = ?");
+
+			stmt.setString(1,theService.getSxolia());
+			stmt.setString(2,theService.getXlm2());
+			stmt.setString(3,theService.getXml1());
+			stmt.setInt(4,theService.getId());
+
+
+
+
+			int i=stmt.executeUpdate();
+			System.out.println(i+" records inserted");
+			stmt.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		}
+
+		return 1;
+	}
+
 
 }
 
